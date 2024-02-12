@@ -148,220 +148,28 @@
       >
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Menu</h5>
+            <h5 class="modal-title" id="exampleModalLabel"></h5>
             <button
               type="button"
               class="close"
               data-dismiss="modal"
               aria-label="Close"
+              id="menuClose"
             >
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
           <div class="modal-body">
-            <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
-              <div class="col">
-                <div class="custom-card">
-                  <img
-                    src="https://www.hotelmousai.com/blog/wp-content/uploads/2021/12/Pizza-800x533.jpg"
-                    class="img-fluid rounded object-fit-cover"
-                  />
-                  <div class="overlay">
-                    <div>
-                      <h4>Pizza</h4>
-                      <h6>₹ 100</h6>
-                    </div>
-
-                    <div class="qty">
-                      <span class="minus bg-dark">-</span>
-                      <input type="number" class="count" name="qty" value="1" />
-                      <span class="plus bg-dark">+</span>
-                    </div>
-
-                    <div class="addBag rounded-circle">
-                      <span class="bi bi-bag-plus-fill icon"></span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="col">
-                <div class="custom-card">
-                  <img
-                    src="https://www.hotelmousai.com/blog/wp-content/uploads/2021/12/Pizza-800x533.jpg"
-                    class="img-fluid rounded object-fit-cover"
-                  />
-                  <div class="overlay">
-                    <div>
-                      <h4>Pizza</h4>
-                      <h6>₹ 100</h6>
-                    </div>
-
-                    <div class="qty">
-                      <span class="minus bg-dark">-</span>
-                      <input type="number" class="count" name="qty" value="1" />
-                      <span class="plus bg-dark">+</span>
-                    </div>
-
-                    <div class="addBag rounded-circle">
-                      <span class="bi bi-bag-plus-fill icon"></span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="col">
-                <div class="custom-card">
-                  <img
-                    src="https://www.hotelmousai.com/blog/wp-content/uploads/2021/12/Pizza-800x533.jpg"
-                    class="img-fluid rounded object-fit-cover"
-                  />
-                  <div class="overlay">
-                    <div>
-                      <h4>Pizza</h4>
-                      <h6>₹ 100</h6>
-                    </div>
-
-                    <div class="qty">
-                      <span class="minus bg-dark">-</span>
-                      <input type="number" class="count" name="qty" value="1" />
-                      <span class="plus bg-dark">+</span>
-                    </div>
-
-                    <div class="addBag rounded-circle">
-                      <span class="bi bi-bag-plus-fill icon"></span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="col">
-                <div class="custom-card">
-                  <img
-                    src="https://www.hotelmousai.com/blog/wp-content/uploads/2021/12/Pizza-800x533.jpg"
-                    class="img-fluid rounded object-fit-cover"
-                  />
-                  <div class="overlay">
-                    <div>
-                      <h4>Pizza</h4>
-                      <h6>₹ 100</h6>
-                    </div>
-
-                    <div class="qty">
-                      <span class="minus bg-dark">-</span>
-                      <input type="number" class="count" name="qty" value="1" />
-                      <span class="plus bg-dark">+</span>
-                    </div>
-
-                    <div class="addBag rounded-circle">
-                      <span class="bi bi-bag-plus-fill icon"></span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="col">
-                <div class="custom-card">
-                  <img
-                    src="https://www.hotelmousai.com/blog/wp-content/uploads/2021/12/Pizza-800x533.jpg"
-                    class="img-fluid rounded object-fit-cover"
-                  />
-                  <div class="overlay">
-                    <div>
-                      <h4>Pizza</h4>
-                      <h6>₹ 100</h6>
-                    </div>
-
-                    <div class="qty">
-                      <span class="minus bg-dark">-</span>
-                      <input type="number" class="count" name="qty" value="1" />
-                      <span class="plus bg-dark">+</span>
-                    </div>
-
-                    <div class="addBag rounded-circle">
-                      <span class="bi bi-bag-plus-fill icon"></span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="col">
-                <div class="custom-card">
-                  <img
-                    src="https://www.hotelmousai.com/blog/wp-content/uploads/2021/12/Pizza-800x533.jpg"
-                    class="img-fluid rounded object-fit-cover"
-                  />
-                  <div class="overlay">
-                    <div>
-                      <h4>Pizza</h4>
-                      <h6>₹ 100</h6>
-                    </div>
-
-                    <div class="qty">
-                      <span class="minus bg-dark">-</span>
-                      <input type="number" class="count" name="qty" value="1" />
-                      <span class="plus bg-dark">+</span>
-                    </div>
-
-                    <div class="addBag rounded-circle">
-                      <span class="bi bi-bag-plus-fill icon"></span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <!-- Add more columns as needed -->
-            </div>
+            <div
+              class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 menus"
+            ></div>
           </div>
-
-          <!-- <div class="modal-footer">
-            <button
-              type="button"
-              class="btn btn-secondary"
-              data-dismiss="modal"
-            >
-              Close
-            </button>
-            <button type="button" class="btn btn-primary" id="updateContentBtn">
-              Update Content
-            </button>
-          </div> -->
         </div>
       </div>
     </div>
 
     <!-- ---------------------- Scripts ---------------------------------  -->
-    <script>
-      const categories = [
-        "Italian",
-        "Mexican",
-        "Chinese",
-        "Italian",
-        "Mexican",
-        "Chinese",
-      ];
-      var container = document.getElementById("categoryBox");
-      categories.forEach((element, i) => {
-        container.innerHTML += `<div class="col-md-4 mb-3 category" id={openMenu${i}}><div class="category-card text-center"><img src="./images/food1.jpeg"class="img-fluid mb-4"alt="Italian Food" /><h2 class="category-title">${element}</h4><p class="category-description">Experience the flavors of Italy with our delicious Italian dishes.</p></div></div>`;
-        container.classList.add("clickable-div");
-      });
-      var container = document.getElementById("container");
-
-      // Function to update modal content
-      function updateModalContent() {
-        document.getElementById("modalContent").innerText =
-          "Updated modal content!";
-      }
-
-      var divs = document.querySelectorAll(".clickable-div");
-      divs.forEach(function (div) {
-        div.addEventListener("click", function () {
-          $("#exampleModal").modal("show");
-        });
-      });
-
-      // Event listener for the button to update modal content
-      document
-        .getElementById("updateContentBtn")
-        .addEventListener("click", function () {
-          updateModalContent();
-        });
-    </script>
-
+    <script src="homeScript.js"></script>
     <!-- Bootstrap JS (optional, if you need dropdowns or other JS-based components) -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
