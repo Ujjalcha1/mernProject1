@@ -131,3 +131,7 @@ input:disabled {
 .count {
   background-color: #dee2e6;
 }
+
+.cartIcon {
+  cursor: pointer;
+}

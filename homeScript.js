@@ -6,6 +6,7 @@ const categories = [
     desc: "Experience the flavors of Italy with our delicious Italian dishes",
     menuList: [
       {
+        id: 100,
         menuName: "Caprese Salad with Pesto Sauce",
         price: 100,
         qty: 1,
@@ -15,6 +16,7 @@ const categories = [
         icon: `bi bi-bag-plus-fill icon`,
       },
       {
+        id: 101,
         menuName: "Panzenella",
         price: 200,
         qty: 1,
@@ -24,6 +26,7 @@ const categories = [
         icon: `bi bi-bag-plus-fill icon`,
       },
       {
+        id: 102,
         menuName: "Bruschetta",
         price: 300,
         qty: 1,
@@ -33,6 +36,7 @@ const categories = [
         icon: `bi bi-bag-plus-fill icon`,
       },
       {
+        id: 103,
         menuName: "Focaccia Bread",
         price: 400,
         qty: 1,
@@ -42,6 +46,7 @@ const categories = [
         icon: `bi bi-bag-plus-fill icon`,
       },
       {
+        id: 104,
         menuName: "Pasta Carbonara",
         price: 500,
         qty: 1,
@@ -51,6 +56,7 @@ const categories = [
         icon: `bi bi-bag-plus-fill icon`,
       },
       {
+        id: 105,
         menuName: "Margherita Pizza",
         price: 600,
         qty: 1,
@@ -68,6 +74,7 @@ const categories = [
     desc: "Experience the flavors of Italy with our delicious Italian dishes",
     menuList: [
       {
+        id: 106,
         menuName: "Sushi",
         price: 100,
         qty: 1,
@@ -77,6 +84,7 @@ const categories = [
         icon: `bi bi-bag-plus-fill icon`,
       },
       {
+        id: 107,
         menuName: "Udon",
         price: 200,
         qty: 1,
@@ -86,6 +94,7 @@ const categories = [
         icon: `bi bi-bag-plus-fill icon`,
       },
       {
+        id: 108,
         menuName: "Tofu",
         price: 300,
         qty: 1,
@@ -95,6 +104,7 @@ const categories = [
         icon: `bi bi-bag-plus-fill icon`,
       },
       {
+        id: 109,
         menuName: "Tempura",
         price: 400,
         qty: 1,
@@ -104,6 +114,7 @@ const categories = [
         icon: `bi bi-bag-plus-fill icon`,
       },
       {
+        id: 110,
         menuName: "Yakitori",
         price: 500,
         qty: 1,
@@ -113,6 +124,7 @@ const categories = [
         icon: `bi bi-bag-plus-fill icon`,
       },
       {
+        id: 111,
         menuName: "Sashimi",
         price: 600,
         qty: 1,
@@ -130,6 +142,7 @@ const categories = [
     desc: "Experience the flavors of Italy with our delicious Italian dishes",
     menuList: [
       {
+        id: 112,
         menuName: "Keftedes",
         price: 100,
         qty: 1,
@@ -139,6 +152,7 @@ const categories = [
         icon: `bi bi-bag-plus-fill icon`,
       },
       {
+        id: 113,
         menuName: "Souvlaki",
         price: 500,
         qty: 1,
@@ -148,6 +162,7 @@ const categories = [
         icon: `bi bi-bag-plus-fill icon`,
       },
       {
+        id: 113,
         menuName: "Melitzanosalata",
         price: 800,
         qty: 1,
@@ -165,6 +180,7 @@ const categories = [
     desc: "Experience the flavors of Italy with our delicious Italian dishes",
     menuList: [
       {
+        id: 114,
         menuName: "Gazpacho",
         price: 100,
         qty: 1,
@@ -174,6 +190,7 @@ const categories = [
         icon: `bi bi-bag-plus-fill icon`,
       },
       {
+        id: 115,
         menuName: "Paella",
         price: 420,
         qty: 1,
@@ -183,6 +200,7 @@ const categories = [
         icon: `bi bi-bag-plus-fill icon`,
       },
       {
+        id: 116,
         menuName: "Tortilla Española",
         price: 100,
         qty: 1,
@@ -192,6 +210,7 @@ const categories = [
         icon: `bi bi-bag-plus-fill icon`,
       },
       {
+        id: 117,
         menuName: "Gambas al ajillo",
         price: 100,
         qty: 1,
@@ -209,6 +228,7 @@ const categories = [
     desc: "Experience the flavors of Italy with our delicious Italian dishes",
     menuList: [
       {
+        id: 118,
         menuName: "Mini Ravioli",
         price: 650,
         qty: 1,
@@ -218,6 +238,7 @@ const categories = [
         icon: `bi bi-bag-plus-fill icon`,
       },
       {
+        id: 119,
         menuName: "Turk’s Meatballs",
         price: 250,
         qty: 1,
@@ -227,6 +248,7 @@ const categories = [
         icon: `bi bi-bag-plus-fill icon`,
       },
       {
+        id: 120,
         menuName: "Turkish Style Pizza",
         price: 555,
         qty: 1,
@@ -244,6 +266,7 @@ const categories = [
     desc: "Experience the flavors of Italy with our delicious Italian dishes",
     menuList: [
       {
+        id: 121,
         menuName: "Chicken Makhani",
         price: 256,
         qty: 1,
@@ -253,6 +276,7 @@ const categories = [
         icon: `bi bi-bag-plus-fill icon`,
       },
       {
+        id: 122,
         menuName: "Aloo Gobi",
         price: 100,
         qty: 1,
@@ -262,6 +286,7 @@ const categories = [
         icon: `bi bi-bag-plus-fill icon`,
       },
       {
+        id: 123,
         menuName: "Matar Paneer",
         price: 240,
         qty: 1,
@@ -273,6 +298,8 @@ const categories = [
     ],
   },
 ];
+
+const cartItems = [];
 
 var container = document.getElementById("categoryBox");
 categories.forEach((element, i) => {
@@ -299,6 +326,7 @@ function clearAllModalContents() {
 var divs = document.querySelectorAll(".category");
 var modalContent = document.querySelector(".menus");
 var modalDiv = document.querySelector(".modal-title");
+
 divs.forEach(function (div, index) {
   div.addEventListener("click", function () {
     modalDiv.innerHTML = categories[index].categoryName;
@@ -317,13 +345,13 @@ divs.forEach(function (div, index) {
                     </div>
 
                     <div class="qty">
-                      <span class="minus bg-dark" onclick="updateQuantity(${ind},${index}, -1)">-</span>
-                      <span class="count" id="menu${ind}-quantity">${element.qty}</span>
-                      <span class="plus bg-dark" onclick="updateQuantity(${ind}, ${index}, 1)">+</span>
+                      <span class="minus bg-dark" onclick="updateQuantity(${element.id},${index}, -1)">-</span>
+                      <span class="count" element.id="menu${element.id}-quantity">${element.qty}</span>
+                      <span class="plus bg-dark" onclick="updateQuantity(${element.id}, ${index}, 1)">+</span>
                     </div>
 
-                    <div class="addBag rounded-circle" onclick="onAdd(${ind}, ${index})">
-                    <i id="product${ind}-icon" class="bi ${icon} icon"></i>
+                    <div class="addBag rounded-circle" onclick="onAdd(${element.id}, ${index})">
+                    <i id="product${element.id}-icon" class="bi ${icon} icon"></i>
                      
                     </div>
                   </div>
@@ -336,20 +364,28 @@ divs.forEach(function (div, index) {
 });
 
 function onAdd(productId, mainIndex) {
-  var cart = document.querySelector(".cartNo");
+  let cart = document.querySelector(".cartNo");
   const productIcon = document.getElementById(`product${productId}-icon`);
-  productIcon.classList.remove("bi-bag-plus-fill");
-  productIcon.classList.add("bi-cart-check-fill");
 
-  let totalCart = 0;
+  let getProductIndex = categories[mainIndex].menuList.findIndex(
+    (it) => it.id === productId
+  );
 
-  categories[mainIndex].menuList[productId].isCart =
-    !categories[mainIndex].menuList[productId].isCart;
+  let isAlreadyAdded = cartItems.findIndex((it) => it.id === productId);
 
-  categories.forEach(function (category) {
-    totalCart += category.menuList.filter((item) => item.isCart).length;
-  });
-  cart.innerHTML = totalCart;
+  if (isAlreadyAdded === -1) {
+    const getItem = categories[mainIndex].menuList[getProductIndex];
+    cartItems.push(getItem);
+    productIcon.classList.remove("bi-bag-plus-fill");
+    productIcon.classList.add("bi-cart-check-fill");
+  } else if (isAlreadyAdded > -1) {
+    const getItem = cartItems.findIndex((it) => it.id === productId);
+    cartItems.splice(getItem.id, 1);
+    productIcon.classList.add("bi-bag-plus-fill");
+    productIcon.classList.remove("bi-cart-check-fill");
+  }
+
+  cart.innerHTML = cartItems.length;
 }
 
 function updateQuantity(productId, mainIndex, change) {
@@ -365,3 +401,10 @@ document.getElementById("menuClose").addEventListener("click", function () {
   clearAllModalContents();
   $("#exampleModal").modal("hide");
 });
+
+document
+  .getElementById("cart-icon-link")
+  .addEventListener("click", function (e) {
+    e.preventDefault();
+    $("#cartModal").modal("show");
+  });
