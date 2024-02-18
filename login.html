@@ -92,13 +92,14 @@
             username,
             password,
           };
-          console.log("url", url);
           xhr.open("POST", url, true);
           xhr.setRequestHeader("Content-Type", "application/json");
 
           xhr.onreadystatechange = function () {
-            console.log(xhr.status);
             if (xhr.readyState === 4 && xhr.status === 200) {
+              const response = JSON.parse(xhr.responseText);
+              const token = response.token;
+              localStorage.setItem("token", token);
               window.location.href = "http://127.0.0.1:5500/home.html";
             } else if (xhr.readyState === 4 && xhr.status !== 200) {
               console.error("Error login user");

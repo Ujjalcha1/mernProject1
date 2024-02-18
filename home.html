@@ -53,9 +53,10 @@
             <li class="nav-item">
               <a class="nav-link cart-icon" href="#" id="cart-icon-link">
                 <i class="fas fa-shopping-cart fa-lg"></i>
-                <span class="badge badge-primary cartNo" id="cart-item-count"
-                  >0</span
-                >
+                <span
+                  class="badge badge-primary cartNo"
+                  id="cart-item-count"
+                ></span>
               </a>
             </li>
           </ul>
@@ -187,7 +188,18 @@
             </button>
           </div>
           <div class="modal-body">
-            <p>Cart items will be displayed here.</p>
+            <table class="table table-striped checkout-table">
+              <thead>
+                <tr>
+                  <th scope="col">Image</th>
+                  <th scope="col">Item</th>
+                  <th scope="col">Quantity</th>
+                  <th scope="col">Price</th>
+                  <th scope="col">Total Price</th>
+                </tr>
+              </thead>
+              <tbody id="cartBody"></tbody>
+            </table>
           </div>
           <div class="modal-footer">
             <button

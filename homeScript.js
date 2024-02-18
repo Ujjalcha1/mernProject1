@@ -12,71 +12,6 @@ function clearAllModalContents() {
   });
 }
 
-// var divs = document.querySelectorAll(".category");
-// var modalContent = document.querySelector(".menus");
-// var modalDiv = document.querySelector(".modal-title");
-
-// divs.forEach(function (div, index) {
-//   div.addEventListener("click", function () {
-//     modalDiv.innerHTML = categories[index].categoryName;
-//     categories[index].menuList.forEach((element, ind) => {
-//       const icon = element.icon;
-//       modalContent.innerHTML += `<div class="col">
-//           <div class="custom-card">
-//             <img
-//               src=${element.image}
-//               class="img-fluid rounded object-fit-cover"
-//             />
-//             <div class="overlay">
-//               <div>
-//                 <h4>${element.menuName}</h4>
-//                 <h6>₹ ${element.price}</h6>
-//               </div>
-
-//               <div class="qty">
-//                 <span class="minus bg-dark" onclick="updateQuantity(${element.id},${index}, -1)">-</span>
-//                 <span class="count" element.id="menu${element.id}-quantity">${element.qty}</span>
-//                 <span class="plus bg-dark" onclick="updateQuantity(${element.id}, ${index}, 1)">+</span>
-//               </div>
-
-//               <div class="addBag rounded-circle" onclick="onAdd(${element.id}, ${index})">
-//               <i id="product${element.id}-icon" class="bi ${icon} icon"></i>
-
-//               </div>
-//             </div>
-//           </div>
-//         </div>`;
-//     });
-
-//     $("#exampleModal").modal("show");
-//   });
-// });
-
-function onAdd(productId, mainIndex) {
-  let cart = document.querySelector(".cartNo");
-  const productIcon = document.getElementById(`product${productId}-icon`);
-
-  let getProductIndex = categories[mainIndex].menuList.findIndex(
-    (it) => it.id === productId
-  );
-
-  let isAlreadyAdded = cartItems.findIndex((it) => it.id === productId);
-
-  if (isAlreadyAdded === -1) {
-    const getItem = categories[mainIndex].menuList[getProductIndex];
-    cartItems.push(getItem);
-    productIcon.classList.remove("bi-bag-plus-fill");
-    productIcon.classList.add("bi-cart-check-fill");
-  } else if (isAlreadyAdded > -1) {
-    const getItem = cartItems.findIndex((it) => it.id === productId);
-    cartItems.splice(getItem.id, 1);
-    productIcon.classList.add("bi-bag-plus-fill");
-    productIcon.classList.remove("bi-cart-check-fill");
-  }
-
-  cart.innerHTML = cartItems.length;
-}
-
 function updateQuantity(productId, mainIndex, change) {
   const quantityElement = document.getElementById(`menu${productId}-quantity`);
   let currentQuantity = parseInt(quantityElement.innerText);
@@ -136,6 +71,7 @@ function onClickCategory(id) {
       return response.json();
     })
     .then((data) => {
+      clearAllModalContents();
       var modalContent = document.querySelector(".menus");
       data.forEach((element, ind) => {
         modalContent.innerHTML += `<div class="col">
@@ -151,13 +87,24 @@ function onClickCategory(id) {
                     </div>
 
                     <div class="qty">
-                      <span class="minus bg-dark" onclick="onDecrese('${element._id}', '${element.quantity}')" >-</span>
+                      <span class="minus bg-dark" onclick="onDecrese('${
+                        element._id
+                      }', '${element.quantity}')" >-</span>
                       <span class="count">${element.quantity}</span>
-                      <span class="plus bg-dark" onclick="onIncrease('${element._id}', '${element.quantity}')">+</span>
+                      <span class="plus bg-dark" onclick="onIncrease('${
+                        element._id
+                      }', '${element.quantity}')">+</span>
                     </div>
 
-                    <div class="addBag rounded-circle">
-                    <i class="fas fa-shopping-cart- fa-lg icon"></i>
+                    <div class="addBag rounded-circle" onclick="onAdd('${
+                      element._id
+                    }', '${element.quantity}')">
+                    <i class="${
+                      !element.isCart
+                        ? "fas fa-shopping-cart fa-lg icon"
+                        : "fas fa-address-book fa-lg icon"
+                    }"></i>
+
                     </div>
                   </div>
                 </div>
@@ -186,7 +133,6 @@ function onIncrease(id, qty) {
       return response.json();
     })
     .then((data) => {
-      clearAllModalContents();
       onClickCategory(data.categoryId);
     })
     .catch((error) => {
@@ -210,8 +156,83 @@ function onDecrese(id, qty) {
       return response.json();
     })
     .then((data) => {
-      clearAllModalContents();
       onClickCategory(data.categoryId);
+    })
+    .catch((error) => {
+      console.error("Error fetching API data:", error);
+    });
+}
+
+function onAdd(menuId, quantity) {
+  let token = localStorage.getItem("token");
+  fetch(`http://192.168.0.109:3001/cart/add`, {
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+      Authorization: token,
+    },
+    method: "POST",
+    body: JSON.stringify({
+      menuId,
+      quantity: Number(quantity),
+    }),
+  })
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+      return response.json();
+    })
+    .then((data) => {
+      callCart();
+    })
+    .catch((error) => {
+      console.error("Error fetching API data:", error);
+    });
+}
+
+function callCart() {
+  let token = localStorage.getItem("token");
+  fetch(`http://192.168.0.109:3001/allcart`, {
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+      Authorization: token,
+    },
+    method: "GET",
+  })
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+      return response.json();
+    })
+    .then((data) => {
+      let count = 0;
+      data.map((item, index) => {
+        count = index + 1;
+      });
+
+      document.getElementById("cart-item-count").innerHTML = count;
+
+      var container = document.getElementById("cartBody");
+      data.forEach((element, i) => {
+        container.innerHTML += `
+                <tr>
+                  <td>
+                    <img src=${
+                      element.menu.image
+                    } alt="Item 1" class="item-image" />
+                  </td>
+                  <td>${element.menu.name}</td>
+                  <td>${element.menu.quantity}</td>
+                  <td>${element.menu.price}</td>
+                  <td>${element.menu.quantity * element.menu.price}</td>
+                </tr>
+                
+              `;
+      });
+      var container = document.getElementById("container");
     })
     .catch((error) => {
       console.error("Error fetching API data:", error);
@@ -220,4 +241,5 @@ function onDecrese(id, qty) {
 
 if (window.location.pathname === "/home.html") {
   callApiOnPageLoad();
+  callCart();
 }
