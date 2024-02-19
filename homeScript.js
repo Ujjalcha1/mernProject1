@@ -1,5 +1,3 @@
-const cartItems = [];
-
 // Function to update modal content
 function updateModalContent() {
   document.getElementById("modalContent").innerText = "Updated modal content!";
@@ -7,6 +5,13 @@ function updateModalContent() {
 
 function clearAllModalContents() {
   const modalBodies = document.querySelectorAll(".menus");
+  modalBodies.forEach((modalBody) => {
+    modalBody.innerHTML = ""; // Clear the modal body content
+  });
+}
+
+function clearCartModal() {
+  const modalBodies = document.querySelectorAll("#cartBody");
   modalBodies.forEach((modalBody) => {
     modalBody.innerHTML = ""; // Clear the modal body content
   });
@@ -24,6 +29,11 @@ function updateQuantity(productId, mainIndex, change) {
 document.getElementById("menuClose").addEventListener("click", function () {
   clearAllModalContents();
   $("#exampleModal").modal("hide");
+});
+
+document.getElementById("cartClose").addEventListener("click", function () {
+  clearCartModal();
+  $("#cartModal").modal("hide");
 });
 
 document
@@ -216,8 +226,10 @@ function callCart() {
       document.getElementById("cart-item-count").innerHTML = count;
 
       var container = document.getElementById("cartBody");
-      data.forEach((element, i) => {
-        container.innerHTML += `
+
+      if (data.length > 0) {
+        data.forEach((element, i) => {
+          container.innerHTML += `
                 <tr>
                   <td>
                     <img src=${
@@ -228,11 +240,46 @@ function callCart() {
                   <td>${element.menu.quantity}</td>
                   <td>${element.menu.price}</td>
                   <td>${element.menu.quantity * element.menu.price}</td>
+                  <td>
+                  <a class="nav-link" href="#" id="cart-icon-link" onclick="removeItem('${
+                    element._id
+                  }')" >
+                  <i class="fas fa-trash fa-lg"></i>
+                  </a>
+                  </td>
                 </tr>
                 
               `;
-      });
+        });
+      } else {
+        container.innerHTML = "<p>No item found!</p>";
+      }
       var container = document.getElementById("container");
+    })
+    .catch((error) => {
+      console.error("Error fetching API data:", error);
+    });
+}
+
+function removeItem(id) {
+  let token = localStorage.getItem("token");
+  fetch(`http://192.168.0.109:3001/cart/${id}`, {
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+      Authorization: token,
+    },
+    method: "DELETE",
+  })
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+      return response.json();
+    })
+    .then((data) => {
+      clearCartModal();
+      callCart();
     })
     .catch((error) => {
       console.error("Error fetching API data:", error);
